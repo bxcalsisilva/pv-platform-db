@@ -85,52 +85,46 @@ def Filter_and_Reject(data, Header, filt_values, module):
     # Filtrado de valores mayores a umbral mínimo
     unit = re.search(" (.*)", Header)
     if unit.group(1) == "(W/m2)":  # Para valores de irradiancia
-        if filt_values[0][0].get() == 1:
-            data = data[data[Header] >= float(filt_values[1][0].get()) * 1000 / 100]
+        if filt_values[0][0] == 1:
+            data = data[data[Header] >= float(filt_values[1][0]) * 1000 / 100]
     if unit.group(1) == "(W)":  # Para valores de potencia
-        if filt_values[0][0].get() == 1:
+        if filt_values[0][0] == 1:
             data = data[
                 data[Header]
-                >= float(filt_values[1][0].get()) * module.Pnom.item() * 1000 / 100
+                >= float(filt_values[1][0]) * module.Pnom.item() * 1000 / 100
             ]
     # Filtro de horas mayor a umbral
-    if filt_values[0][1].get() == 1:
-        data = data[data["hours"] >= float(filt_values[1][1].get())]
+    if filt_values[0][1] == 1:
+        data = data[data["hours"] >= float(filt_values[1][1])]
     # Filtro de horas menor a umbral
-    if filt_values[0][2].get() == 1:
-        data = data[data["hours"] <= float(filt_values[1][2].get())]
+    if filt_values[0][2] == 1:
+        data = data[data["hours"] <= float(filt_values[1][2])]
     # Rechazo de día por falta de datos
-    if filt_values[0][3].get() == 1:
+    if filt_values[0][3] == 1:
         data["diff"] = data["hours"].diff()
         if (
             data["diff"].max()
             > (data["hours"].max() - data["hours"].min())
-            * float(filt_values[1][3].get())
+            * float(filt_values[1][3])
             / 100
         ):
             exist = 0
         data = data.drop(["diff"], axis=1)
     # Rechazo de día por inicio o fin tardio o temprano
-    if filt_values[0][4].get() == 1 and data["hours"].min() > float(
-        filt_values[1][4].get()
-    ):
+    if filt_values[0][4] == 1 and data["hours"].min() > float(filt_values[1][4]):
         exist = 0
-    if filt_values[0][5].get() == 1 and data["hours"].max() < float(
-        filt_values[1][5].get()
-    ):
+    if filt_values[0][5] == 1 and data["hours"].max() < float(filt_values[1][5]):
         exist = 0
     filtered_points = in_length - len(data.index)
     if filtered_points > 0:
         data = data.reset_index()
     # Agrupación de data
-    if filt_values[2][3].get() == 1:
+    if filt_values[2][3] == 1:
         temp = data[["time"]].copy().diff().min().item()
         temp = int(temp.total_seconds() / 60)
-        if temp != int(filt_values[3][1].get()):
+        if temp != int(filt_values[3][1]):
             data = data.set_index("time")
-            data = data.resample(
-                f"{int(filt_values[3][1].get())}T", label="right"
-            ).mean()
+            data = data.resample(f"{int(filt_values[3][1])}T", label="right").mean()
             data = data.reset_index()
             data["hours"] = pd.to_datetime(data["time"])
             data["hours"] = data["hours"].apply(
@@ -379,7 +373,7 @@ def Get_data(data_matrix, module, Header, header_df, filt_values):
             data = data[["time", "hours", Header]].dropna()
 
     # Uso de reemplazo
-    if (exist == 0 and filt_values[2][0].get() == 1) or filt_values[2][2].get() == 1:
+    if (exist == 0 and filt_values[2][0] == 1) or filt_values[2][2] == 1:
         # exist = 0
         if Header in header_df["DAQ"].values:
             try:
@@ -413,12 +407,8 @@ def Get_data(data_matrix, module, Header, header_df, filt_values):
                 data = data[["time", "hours", Header]].dropna()
 
     # Reemplazo de valores afectados por sombra (Solo aplicado en potencia)
-    if (
-        (filt_values[2][1].get() == 1)
-        and Header[0] == "P"
-        and (exist == 1 or replaced == 1)
-    ):
-        for x in range(int(filt_values[3][0].get())):
+    if (filt_values[2][1] == 1) and Header[0] == "P" and (exist == 1 or replaced == 1):
+        for x in range(int(filt_values[3][0])):
             data[Header] = shadow_correction(
                 data, Header, data_matrix, module, header_df, filt_values
             )
