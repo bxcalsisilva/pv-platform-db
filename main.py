@@ -10,10 +10,10 @@ platform = PhotovoltaicPlatform()
 systems = platform.systems
 systems.commisioned = pd.to_datetime(systems.commisioned)
 
-start_dt = date(2021, 11, 1)
+start_dt = date(2021, 11, 11)
 yesterday = date.today() - timedelta(days=1)
 
-for dt in pd.date_range(start_dt, date(2021, 11, 2)):
+for dt in pd.date_range(start_dt, date(2021, 11, 11)):
     dt = dt.to_pydatetime().date()
     platform.process_upload_date(dt)
 

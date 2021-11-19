@@ -313,7 +313,6 @@ def Get_Files(date, module, base_dir, header_df):
         data_CA = Set_hours(data_CA)
     except:
         data_CA = pd.DataFrame()
-        print("error ca")
 
     # Variables eléctricas (SFCR)
     try:
@@ -323,7 +322,6 @@ def Get_Files(date, module, base_dir, header_df):
         data_E = Set_hours(data_E)
     except:
         data_E = pd.DataFrame()
-        print("error e")
 
     # Variables eléctricas alternativas (SunnyPortal)
     adata_E = pd.DataFrame()
@@ -331,13 +329,11 @@ def Get_Files(date, module, base_dir, header_df):
     # Variables Temperatura e Irradiancias (DAQ)
     try:
         data_DAQ = download.read_daq(loc, date)
-        print("daq empty?", data_DAQ.empty)
         columns = header_df["DAQ"].dropna().values
         data_DAQ.columns = columns
         data_DAQ = Set_hours(data_DAQ)
     except:
         data_DAQ = pd.DataFrame()
-        print("error daq")
 
     # Variables Temperatura e Irradiancia alternativa
     adata_DAQ = pd.DataFrame()
