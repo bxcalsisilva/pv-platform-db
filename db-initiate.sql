@@ -1,0 +1,70 @@
+-- MariaDB dump 10.19  Distrib 10.5.12-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: pv_platform2
+-- ------------------------------------------------------
+-- Server version	10.5.12-MariaDB-0ubuntu0.21.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Dumping data for table `locations`
+--
+
+LOCK TABLES `locations` WRITE;
+/*!40000 ALTER TABLE `locations` DISABLE KEYS */;
+INSERT INTO `locations` VALUES 
+(1,'PUCP','Pontificia Universidad Católica del Perú','Lima','Lima','Av. Universitaria 1801, San Miguel 15088',-12.071500,-77.080300,275.000000),
+(2,'UNI','Universidad Nacional de Ingeniería','Lima','Lima','Av. Túpac Amaru 210, Rímac 15333',-12.025943,-77.046420,275.000000),
+(3,'UNTRM','Universidad Nacional Toribio Rodríguez de Mendoza de Amazonas','Amazonas','Chachapoyas','Triunfo, Chachapoyas 01001',-6.233028,-77.855389,2335.000000),
+(4,'UNAJ','Universidad Nacional de Juliaca','Puno','Juliaca','Av. Nueva Zelandia N 631, Juliaca Perú',-15.409524,-70.090256,3824.000000),
+(5,'UNJBG','Universidad Nacional Jorge Basadre Grohmann','Tacna','Tacna','Av.  Miraflores S/N, Miraflores 23000',-18.024432,-70.251415,552.000000),
+(6,'UNSA','Universidad Nacional de San Agustin de Arequipa','Arequipa','Arequipa','51, Santa Catalina 117, Arequipa 04000',-16.403545,-71.524435,2335.000000);
+/*!40000 ALTER TABLE `locations` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+--
+-- Dumping data for table `systems`
+--
+
+LOCK TABLES `systems` WRITE;
+/*!40000 ALTER TABLE `systems` DISABLE KEYS */;
+INSERT INTO `systems` VALUES 
+(1,1,1.6750, 1.6864,'PERC',5,1,'2020-01-29',15.0000,'N',180.0000, -0.37, 'SFCR1'),
+(2,1,1.6500, 1.6700,'HIT',5,1,'2020-01-29',15.0000,'N',180.0000, -0.26, 'SFCR2'),
+(3,1,1.6100, 0.8046,'CIGS',7,2,'2020-01-29',15.0000,'N',180.0000, -0.23, 'SFCR3'),
+(4,2,1.6750, 1.6864,'PERC',5,1,'2020-07-14',15.0000,'N',180.0000, -0.37, 'SFCR1'),
+(5,2,1.6500, 1.6700,'HIT',5,1,'2020-07-14',15.0000,'N',180.0000, -0.26, 'SFCR2'),
+(6,2,1.6100, 0.8046,'CIGS',7,2,'2020-07-14',15.0000,'N',180.0000, -0.23, 'SFCR3'),
+(7,3,1.6750, 1.6864,'PERC',5,1,'2021-01-18',15.0000,'N',180.0000, -0.37, 'SFCR1'),
+(8,3,1.6500, 1.6700,'HIT',5,1,'2021-01-18',15.0000,'N',180.0000, -0.26, 'SFCR2'),
+(9,3,1.6100, 0.8046,'CIGS',7,2,'2021-01-18',15.0000,'N',180.000, -0.23, 'SFCR3'),
+(10,4,1.6750, 1.6864,'PERC',5,1,'2021-04-24',15.0000,'N',180.0000, -0.37, 'SFCR1'),
+(11,4,1.6500, 1.6700,'HIT',5,1,'2021-04-24',15.0000,'N',180.0000, -0.26, 'SFCR2'),
+(12,4,1.6100, 0.8046,'CIGS',7,2,'2021-04-24',15.0000,'N',180.0000, -0.23, 'SFCR3'),
+(13,5,1.6750, 1.6864,'PERC',5,1,'2020-02-08',15.0000,'N',180.0000, -0.37, 'SFCR1'),
+(14,5,1.6500, 1.6700,'HIT',5,1,'2020-02-08',15.0000,'N',180.0000, -0.26, 'SFCR2'),
+(15,5,1.6100, 0.8046,'CIGS',7,2,'2020-02-08',15.0000,'N',180.0000, -0.23, 'SFCR3'),
+(16,6,1.6750, 1.6864,'PERC',5,1,'2020-02-15',15.0000,'N',180.0000, -0.37, 'SFCR1'),
+(17,6,1.6500, 1.6700,'HIT',5,1,'2020-02-15',15.0000,'N',180.0000, -0.26, 'SFCR2'),
+(18,6,1.6100, 0.8046,'CIGS',7,2,'2020-02-15',15.0000,'N',180.0000, -0.23, 'SFCR3');
+/*!40000 ALTER TABLE `systems` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-10-12 17:13:08

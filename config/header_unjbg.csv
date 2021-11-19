@@ -1,0 +1,14 @@
+DAQ,SFCR,CA
+date,date,-
+time,time,
+Gchin (W/m2),Idc (A),
+Gmini1 (W/m2),Vdc (V),
+Gmini2 (W/m2),Pdc (W),
+dis,Iac (A),
+TC CIGS (C),Vac (V),
+TS CIGS (C),Pac (W),
+TC PERC (C),Freq (Hz),
+TS PERC (C),Qac (VAR),
+TC HIT (C),Sac (VA),
+TS HIT (C),,
+G (W/m2),,

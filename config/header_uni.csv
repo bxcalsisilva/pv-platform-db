@@ -1,0 +1,12 @@
+DAQ,SFCR,CA
+-,date,-
+,time,
+,Idc (A),
+,Vdc (V),
+,Pdc (W),
+,Iac (A),
+,Vac (V),
+,Pac (W),
+,Freq (Hz),
+,Qac (VAR),
+,Sac (VA),

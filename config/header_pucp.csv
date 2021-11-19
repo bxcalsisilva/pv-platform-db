@@ -1,0 +1,14 @@
+DAQ,SFCR,CA
+date,date,date
+time,time,time
+Gmini (W/m2),Idc (A),dis
+Gchin (W/m2),Vdc (V),G0 (W/m2)
+dis,Pdc (W),G20 (W/m2)
+dis2,Iac (A),Tair (C)
+TC CIGS (C),Vac (V),HR
+TS CIGS (C),Pac (W),pres (hPa)
+TC HIT (C),Freq (Hz),Densair (kg/m3)
+TS HIT (C),Qac (VAR),Vair (m/s)
+TC PERC (C),Sac (VA),Dirair
+TS PERC (C),,
+G (W/m2),,
