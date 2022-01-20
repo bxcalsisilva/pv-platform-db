@@ -24,7 +24,7 @@ class Upload:
                 password="password",
                 host="localhost",
                 port=3306,
-                database="test",
+                database="pv_systems",
                 autocommit=False,
             )
             self.connector = conn
@@ -209,7 +209,7 @@ class Upload:
 
         self.cursor.execute(
             "INSERT INTO inverters "
-            + "(observation_id, system_id, voltage_dc, current_dc, power_apparent, power_dc, power_ac, power_dc_t25, power_ac_t25) "
+            + "(observation_id, system_id, voltage_dc, current_dc, power_apparent, power_ac, power_dc, power_ac_t25, power_dc_t25) "
             + f"VALUES {tuples}"
         )
 
@@ -261,8 +261,8 @@ class Upload:
         q = (
             "INSERT INTO performances "
             + "(radiation, energy_ac, energy_dc, energy_ac_t25, energy_dc_t25, "
-            + "yield_reference, yield_absolute, yield_final, yield_absolute_t25, "
-            + "yield_final_t25, performance_ratio, performance_ratio_t25, "
+            + "yield_reference, yield_final, yield_absolute, yield_final_t25, "
+            + "yield_absolute_t25, performance_ratio, performance_ratio_t25, "
             + "efficiency_array, efficiency_system, efficiency_inverter, "
             + "date, system_id) "
             + f"VALUES {tuples}"
