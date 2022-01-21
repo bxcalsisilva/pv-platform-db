@@ -59,7 +59,7 @@ starlette==0.16.0
 tkcalendar==1.6.1
 tomli==1.2.1
 typing-extensions==3.10.0.2
-ujson==4.2.0
+ujson==5.1.0
 uritemplate==3.0.1
 urllib3==1.26.7
 uvicorn==0.15.0
