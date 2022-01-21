@@ -1,14 +1,48 @@
 # pv-platform-db
 The database population for PV Platform project
 
-## SQL
-- Tables creation (db-create.sql)
-- Configuration (db-initiate.sql)
+## Structure
 
+### SQL
+- Tables creation (db-create.sql)
+- Basic Information (db-initiate.sql)
+
+### config
+- Column names of google drive files for each location
+
+### Google Drive connection
+`client_secrets.json`, `creds.json` and `settings.yaml` files for authenticated google drive connection.
+
+`main.py`
+- Calls `pv_platform.py` on all dates since project initiation.
+
+`pv_platform.py`
+- Manage calls for download, process and upload of PV Systems.
+
+`download.py`
+- Google Drive connection and data extraction for inverter and tracer.
+
+`processing.py`
+- Hourly and Daily processing manager
+
+`F_PR2_V1.py`
+- Miscellaneous proceesing functions (Modified from Arturo's functions)
+
+`filt_values.py`
+- Processing filters configuration (Modified from Arturo's config)
+
+`settings.py`
+- Column name configuration
+
+`upload.py`
+- Connection and upload to database.
+
+`populate-first.py`
+- First population of Database from locally saved preprocessed data.
 
 ## [Database Diagram]
 
-![DB Diagram](/db-diagram.png)
+![DB Diagram](./sql/db-diagram.png)
 
 ## AWS
 ### EC2 Connection

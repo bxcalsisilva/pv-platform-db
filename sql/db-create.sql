@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.5.12-MariaDB, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.19  Distrib 10.3.32-MariaDB, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: pv_platform
+-- Host: pv-db.ckzi7vlatwr4.sa-east-1.rds.amazonaws.com    Database: test
 -- ------------------------------------------------------
--- Server version	10.5.12-MariaDB-0ubuntu0.21.04.1
+-- Server version       10.5.12-MariaDB-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,6 +18,7 @@
 --
 -- Table structure for table `ambients`
 --
+
 
 DROP TABLE IF EXISTS `ambients`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -39,7 +40,7 @@ CREATE TABLE `ambients` (
   KEY `ambients_FK_1` (`location_id`),
   CONSTRAINT `ambients_FK` FOREIGN KEY (`observation_id`) REFERENCES `observations` (`observation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `ambients_FK_1` FOREIGN KEY (`location_id`) REFERENCES `locations` (`location_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2306185 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +81,7 @@ CREATE TABLE `inverters` (
   KEY `inverters_FK_1` (`system_id`),
   CONSTRAINT `inverters_FK` FOREIGN KEY (`observation_id`) REFERENCES `observations` (`observation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `inverters_FK_1` FOREIGN KEY (`system_id`) REFERENCES `systems` (`system_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4259629 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +101,7 @@ CREATE TABLE `irradiances` (
   KEY `irradiances_FK_1` (`location_id`),
   CONSTRAINT `irradiances_FK` FOREIGN KEY (`observation_id`) REFERENCES `observations` (`observation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `irradiances_FK_1` FOREIGN KEY (`location_id`) REFERENCES `locations` (`location_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2827306 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,6 +125,7 @@ CREATE TABLE `locations` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
 --
 -- Table structure for table `logs`
 --
@@ -141,7 +143,7 @@ CREATE TABLE `logs` (
   PRIMARY KEY (`log_id`),
   KEY `logs_FK` (`system_id`),
   CONSTRAINT `logs_FK` FOREIGN KEY (`system_id`) REFERENCES `systems` (`system_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26287 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,8 +158,9 @@ CREATE TABLE `observations` (
   `datetime` datetime NOT NULL,
   PRIMARY KEY (`observation_id`),
   UNIQUE KEY `observations_UN` (`datetime`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5463127 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Table structure for table `performances`
@@ -170,7 +173,7 @@ CREATE TABLE `performances` (
   `performance_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `system_id` tinyint(3) unsigned NOT NULL,
   `date` date NOT NULL,
-  `radiation` decimal(10, 4) DEFAULT NULL,
+  `radiation` decimal(10,4) DEFAULT NULL,
   `yield_reference` decimal(10,4) DEFAULT NULL,
   `yield_absolute` decimal(10,4) DEFAULT NULL,
   `yield_final` decimal(10,4) DEFAULT NULL,
@@ -188,8 +191,9 @@ CREATE TABLE `performances` (
   PRIMARY KEY (`performance_id`),
   KEY `performances_FK` (`system_id`),
   CONSTRAINT `performances_FK` FOREIGN KEY (`system_id`) REFERENCES `systems` (`system_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9828 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Table structure for table `systems`
@@ -202,7 +206,7 @@ CREATE TABLE `systems` (
   `system_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   `location_id` tinyint(3) unsigned NOT NULL,
   `nominal_power` decimal(10,4) NOT NULL,
-  `area` decimal(10, 4) NOT NULL,
+  `area` decimal(10,4) NOT NULL,
   `technology` varchar(50) NOT NULL,
   `row` tinyint(3) unsigned NOT NULL,
   `parallel` tinyint(3) unsigned NOT NULL,
@@ -210,13 +214,18 @@ CREATE TABLE `systems` (
   `inclination` decimal(10,4) NOT NULL,
   `orientation` char(1) NOT NULL,
   `azimuth` decimal(10,4) NOT NULL,
-  `gamma` decimal (10, 4) NOT NULL,
+  `gamma` decimal(10,4) NOT NULL,
   `filename` char(10) NOT NULL,
+  `alpha` decimal(10,4) DEFAULT NULL,
+  `beta` decimal(10,4) DEFAULT NULL,
+  `efficiency` decimal(10,4) DEFAULT NULL,
+  `noct` int(2) unsigned DEFAULT NULL,
   PRIMARY KEY (`system_id`),
   KEY `systems_FK` (`location_id`),
   CONSTRAINT `systems_FK` FOREIGN KEY (`location_id`) REFERENCES `locations` (`location_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 
 --
 -- Table structure for table `t_mods`
@@ -236,7 +245,7 @@ CREATE TABLE `t_mods` (
   KEY `t_mods_FK_1` (`system_id`),
   CONSTRAINT `t_mods_FK` FOREIGN KEY (`observation_id`) REFERENCES `observations` (`observation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `t_mods_FK_1` FOREIGN KEY (`system_id`) REFERENCES `systems` (`system_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2788913 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -248,4 +257,4 @@ CREATE TABLE `t_mods` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-12 16:39:55
+-- Dump completed on 2022-01-21  1:43:39
