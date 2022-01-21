@@ -40,7 +40,7 @@ The database population for PV Platform project
 `populate-first.py`
 - First population of Database from locally saved preprocessed data.
 
-## [Database Diagram]
+## Database Diagram
 
 ![DB Diagram](./sql/db-diagram.png)
 
