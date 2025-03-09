@@ -61,7 +61,7 @@ tomli==1.2.1
 typing-extensions==3.10.0.2
 ujson==4.2.0
 uritemplate==3.0.1
-urllib3==1.26.7
+urllib3==1.26.19
 uvicorn==0.15.0
 uvloop==0.16.0
 watchgod==0.7
