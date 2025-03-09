@@ -46,7 +46,7 @@ pylib==1.0.11
 pyparsing==2.4.7
 python-dateutil==2.8.2
 python-dotenv==0.19.2
-python-multipart==0.0.5
+python-multipart==0.0.18
 pytz==2021.1
 PyYAML==5.4.1
 regex==2021.8.28
